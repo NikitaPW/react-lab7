@@ -47,6 +47,11 @@ class Form extends React.Component{
                 <label>Email: </label>
                 <input name="email" onChange={this.onChange}></input>
                     {(isEmail(this.state.email) || (this.state.email == "")) ? "" : <label style={{color:'red', marginLeft:'10px'}}>The Email is not valid!</label>}
+                 <br/>
+                {isEmail(this.state.email) ?
+                     <button onClick={this.showEmployees} style={{ borderRadius:'1px', marginTop:'10px', width:'140px', height:'40px'}}>Submit: </button>
+                     : <button disabled="true" onClick={this.showEmployees} style={{borderRadius:'1px', marginTop:'10px', width:'140px', height:'40px'}}>Submit: </button>
+                }
                 </div>
                  :
                 <div>
@@ -57,6 +62,11 @@ class Form extends React.Component{
                 <input name="phone" onChange={this.onChange}></input>
                     {(isPhoneNumber(this.state.phone) || (this.state.phone == "")) ? "" :
                     <label style={{color:'red', marginLeft:'10px'}}>The phone number is not valid! Provide 9 digits of your phone number.</label> }
+                <br/>
+                {isPhoneNumber(this.state.phone) ?
+                    <button onClick={this.showEmployees} style={{ borderRadius:'1px', marginTop:'10px', width:'140px', height:'40px'}}>Submit: </button>
+                    : <button disabled="true" onClick={this.showEmployees} style={{borderRadius:'1px', marginTop:'10px', width:'140px', height:'40px'}}>Submit: </button>
+                }
                 </div>}
             </div>}
             </div>
