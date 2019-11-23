@@ -1,5 +1,6 @@
 import React from 'react'
 import Employee from './Employee'
+import Form from './Form'
 
 class Component extends React.Component {
     constructor(props) {
@@ -7,11 +8,23 @@ class Component extends React.Component {
         this.state = {
           showEmployees:false,
           employees: [],
+          showForm: false,
           isLoading: true,
         };
+        this.cancelForm = this.cancelForm.bind(this);
         this.showEmployees = this.showEmployees.bind(this);
         this.componentGet = this.componentGet.bind(this);
+        this.form = this.form.bind(this);
     }
+
+    cancelForm(){
+        this.setState({showForm : false});
+    }
+
+    form(){
+        this.state.showForm ? this.setState({showForm:false}) : this.setState({showForm: true});
+    }
+
 
     componentDidMount() {
         this.componentGet();
@@ -37,11 +50,13 @@ class Component extends React.Component {
     return(
           <div>
             {this.state.isLoading ? <h3>Loading...</h3> :
-              <div> <button onClick={this.showEmployees} style={{borderRadius:'1px', margin:'20px', width:'140px', height:'40px'}}>All employees: </button>
+              <div>
+              <button onClick={this.showEmployees} style={{borderRadius:'1px', margin:'20px', width:'140px', height:'40px'}}>All employees: </button>
+              <button onClick={this.form} style={{borderRadius:'1px', width:'140px', height:'40px'}}>Create new User </button>
               <br/>
               {this.state.showEmployees ? allEmployees : ""}
+              {this.state.showForm ? <Form /> : ""}
               </div>
-
             }
           </div>
         )
